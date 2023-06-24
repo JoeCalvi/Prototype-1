@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private float turnSpeed = 45.0f;
     private float horizontalInput;
     private float forwardInput;
+    public Camera primaryCamera;
+    public Camera secondaryCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +32,15 @@ public class PlayerController : MonoBehaviour
 
         // Causes the vehicle to slide left or right upon input
         // transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
+
+        if(Input.GetKeyDown(KeyCode.V)) {
+            if(primaryCamera.enabled == true) {
+                primaryCamera.enabled = false;
+                secondaryCamera.enabled = true;
+            } else if(secondaryCamera.enabled == true) {
+                secondaryCamera.enabled = false;
+                primaryCamera.enabled = true;
+            }
+        }
     }
 }
